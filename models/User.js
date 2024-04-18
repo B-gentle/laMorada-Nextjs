@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
+import {Schema, model, models} from "mongoose";
 
-const UserSchema = new mongoose.Schema({
+const UserSchema = new Schema({
     email: {
         type: String,
         unique: [true, 'Email already exixts'],
@@ -15,7 +15,7 @@ const UserSchema = new mongoose.Schema({
     },
     bookmarks: [
         {
-            type: mongoose.Schema.Types.ObjectId,
+            type: Schema.Types.ObjectId,
             ref: 'Apartment'
         }
     ]
@@ -23,5 +23,5 @@ const UserSchema = new mongoose.Schema({
     timestamps: true
 })
 
-const User = mongoose.model('User', UserSchema)
+const User = models.User || model('User', UserSchema)
 export default User;

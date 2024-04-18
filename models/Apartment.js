@@ -1,8 +1,8 @@
-import mongoose from "mongoose";
+import {Schema, model, models} from "mongoose";
 
-const ApartmentSchema = new mongoose.Schema({
+const ApartmentSchema = new Schema({
     owner: {
-        type: mongoose.Schema.Types.ObjectId,
+        type: Schema.Types.ObjectId,
         ref: 'User',
         required: true,
     },
@@ -14,15 +14,71 @@ const ApartmentSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    description: [
-        {
-            type: String,
-            ref: 'Apartment'
+    description: {
+        type: String,
+        ref: 'Apartment'
+    },
+    location: {
+        street: {
+            type: String
+        },
+        city: {
+            type: String
+        },
+        state: {
+            type: String
+        },
+        zipcode: {
+            type: String
         }
-    ]
+    },
+    beds: {
+        type: Number,
+        required: true
+    },
+    baths: {
+        type: Number,
+    },
+
+    square_feet: {
+        type: Number,
+    },
+    amenities: [{
+        type: String
+    }],
+    rates: {
+        nightly: {
+            type: Number
+        },
+        weekly: {
+            type: Number
+        },
+        monthly: {
+            type: Number
+        }
+    },
+    seller_info: {
+        name: {
+            type: String
+        },
+        email: {
+            type: String
+        },
+        phone: {
+            type: String
+        }
+    },
+    images: [{
+        type: String
+    }],
+    is_featured: {
+        type: Boolean,
+        default: false
+    }
+
 }, {
     timestamps: true
 })
 
-const Apartment = mongoose.model('Apartment', ApartmentSchema)
+const Apartment = models.Apartment || model('Apartment', ApartmentSchema)
 export default Apartment;
