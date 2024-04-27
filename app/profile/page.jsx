@@ -83,6 +83,7 @@ const ProfilePage = () => {
                   alt="User"
                   width={200}
                   height={200}
+                  priority={true}
                 />
               </div>
               <h2 className="text-2xl mb-4">

@@ -1,4 +1,5 @@
 import React from 'react'
+import PropertySearchForm from './PropertySearchForm'
 
 const Hero = () => {
     return (
@@ -13,20 +14,7 @@ const Hero = () => {
                     </p>
                 </div>
 
-                <form className='mt-3 mx-auto max-w-2xl w-full flex flex-col md:flex-row items-center'>
-                    <div className='w-full md:w-3/5 md:pr-2 mb-4 md:mb-0'>
-                        <input type="search" name="" id="" className='w-full px-4 py-3 rounded-lg bg-white text-gray-800 focus:outline-none focus:ring focus:ring-blue-500' />
-                    </div>
-                    <div className='w-full md:w-2/5 md:pl-2'>
-                        <select className='w-full px-4 py-3 rounded-lg bg-white text-gray-800 focus:outline-none focus:ring focus:ring-blue-500'>
-                            <option>Land</option>
-                            <option>Apartment</option>
-                            <option>Office</option>
-                        </select>
-                    </div>
-
-                    <button type='submit' className='md:ml-4 mt-4 md:mt-0 w-full md:w-auto px-6 py-3 rounded-lg bg-[#2A1234] text-white hover:bg-[#F2B386] focus:outline-none focus:ring focus:ring-blue-500'>Search</button>
-                </form>
+                <PropertySearchForm />
             </div>
 
         </section>

@@ -7,6 +7,13 @@ import {
   FaTimes,
   FaLocationArrow,
 } from "react-icons/fa";
+// import ApartmentMap from "./ApartmentMap";
+import dynamic from "next/dynamic";
+
+
+const DynamicApartmentMap = dynamic(() => import('./ApartmentMap'), {
+  ssr: false
+});
 
 const PropertyDetails = ({ property }) => {
   return (
@@ -93,7 +100,9 @@ const PropertyDetails = ({ property }) => {
         </ul>
       </div>
       <div className="bg-white p-6 rounded-lg shadow-md mt-6">
-        <div id="map"></div>
+        <div id="map">
+          <DynamicApartmentMap property={property} />
+        </div>
       </div>
     </main>
   );

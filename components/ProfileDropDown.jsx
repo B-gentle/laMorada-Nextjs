@@ -15,7 +15,7 @@ const ProfileDropDown = ({ setProfileMenu, signOut }) => {
         My Profile
       </Link>
       <Link
-        href="/"
+        href="/properties/saved"
         onClick={() => {
           setProfileMenu(false);
         }}
