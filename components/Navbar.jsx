@@ -107,12 +107,12 @@ const Navbar = () => {
             </span>
           ) : (
             <>
-              <span className="relative">
+              <Link href='/messages' className="relative">
                 <IoNotifications size={18} color="white" />
                 <span className=" absolute left-[10px] top-[-10px] bg-red-500 text-white p-1 rounded-[100%] h-5 flex justify-center items-center">
                   2
                 </span>
-              </span>
+              </Link>
 
               <span className="relative">
                 <Image
