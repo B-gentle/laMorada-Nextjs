@@ -1,4 +1,5 @@
 import connectDB from "@/config/database";
+import Apartment from "@/models/Apartment";
 import Message from "@/models/message";
 import { getSessionUser } from "@/utils/getSessionUser";
 
@@ -17,9 +18,17 @@ export const GET = async () => {
 
     const { userId } = sessionUser;
 
-    const messages = await Message.find({ receiver: userId })
+    const readMessages = await Message.find({ receiver: userId, read: true })
+      .sort({ createdAt: -1 }) //sort read messages in ascending order
       .populate("sender", "username")
       .populate("property", "name");
+
+      const unreadMessages = await Message.find({ receiver: userId, read: false })
+      .sort({ createdAt: -1 }) //sort read messages in ascending order
+      .populate("sender", "username")
+      .populate("property", "name");
+
+      const messages = [...unreadMessages, ...readMessages]
 
     return new Response(JSON.stringify(messages), { status: 200 });
   } catch (error) {

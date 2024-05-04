@@ -8,8 +8,18 @@ export const GET = async (request) => {
   try {
     await connectDB();
 
-    const properties = await Apartment.find({});
-    return new Response(JSON.stringify(properties), { status: 200 });
+    const page = request.nextUrl.searchParams.get('page') || 1;
+    const pageSize = request.nextUrl.searchParams.get('pageSize') || 6;
+
+    const skip = (page - 1) * pageSize;
+    const total = await Apartment.countDocuments({})
+
+    const properties = await Apartment.find({}).skip(skip).limit(pageSize);
+
+    const result = {
+      total, properties
+    }
+    return new Response(JSON.stringify(result), { status: 200 });
   } catch (error) {
     console.log(error);
     return new Response("Something went wrong", { status: 500 });

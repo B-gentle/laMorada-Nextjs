@@ -8,6 +8,7 @@ import { FaBars } from "react-icons/fa";
 import { IoNotifications } from "react-icons/io5";
 import ProfileDropDown from "./ProfileDropDown";
 import { signOut, useSession } from "next-auth/react";
+import UnreadMessageCount from "@/components/UnreadMessageCount";
 
 const Navbar = () => {
   const { data: session } = useSession();
@@ -108,10 +109,8 @@ const Navbar = () => {
           ) : (
             <>
               <Link href='/messages' className="relative">
-                <IoNotifications size={18} color="white" />
-                <span className=" absolute left-[10px] top-[-10px] bg-red-500 text-white p-1 rounded-[100%] h-5 flex justify-center items-center">
-                  2
-                </span>
+                <IoNotifications size={25} color="white" />
+                <UnreadMessageCount session={session} />
               </Link>
 
               <span className="relative">
